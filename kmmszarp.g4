@@ -44,7 +44,7 @@ type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 ID : LETTER (LETTER | DIGIT)*;
 INT : ('minus')? DIGIT+;
 PINT : DIGIT+;
-STRING : 'początekcudzysłowu' ~('\n')* 'konieccudzysłowu'; // nie można zablokować "konieccudzysłowu" w stringu chyba
+STRING : 'początekcudzysłowu' ~('\n')* 'konieccudzysłowu';
 BOOL : 'prawda' | 'kłamstwo';
 
 LPAR : 'począteknawiasu';
