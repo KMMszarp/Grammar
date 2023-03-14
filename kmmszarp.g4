@@ -15,7 +15,7 @@ parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 
 variableDeclaration : 'zmienna' type ID 'to' expression;
-arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)*;
+arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o' 'długości' PINT)?;
 arrayValue : expression;
 
 variableReference : ID | arrayAccess;
@@ -44,6 +44,7 @@ type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
 ID : LETTER (LETTER | DIGIT)*;
 INT : ('minus')? DIGIT+;
+PINT : DIGIT+;
 STRING : 'początekcudzysłowu' ~('\n')* 'konieccudzysłowu'; // nie można zablokować "konieccudzysłowu" w stringu chyba
 BOOL : 'prawda' | 'kłamstwo';
 
