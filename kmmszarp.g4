@@ -24,7 +24,7 @@ arrayAccess : 'weź' ID 'element' ID;
 variableAssignment : ID 'to' expression;
 arrayAssignment : 'włóż' ID 'na' ID 'miejsce' expression;
 
-functionCall : 'wywołaj' ID '(' argumentList ')';
+functionCall : 'wywołaj' ID argumentList;
 argumentList : (expression ('i' expression)*)?;
 
 expression : negation; 
