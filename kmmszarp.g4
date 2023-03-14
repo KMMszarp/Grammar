@@ -1,6 +1,6 @@
 grammar kmmszarp;
 
-program : (statement NEWLINE)*;
+program : (statement NEWLINE? | NEWLINE)*;
 
 statement : loopFor | loopWhile | conditional | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall;
 
@@ -27,24 +27,21 @@ arrayAssignment : 'włóż' ID 'na' ID 'miejsce' expression;
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
 
-expression : negation; 
-negation : logicOr (('przemień'|'nie'|'zaneguj') logicOr)*;
+expression : logicOr;
 logicOr : logicAnd ('lub' logicAnd)*;
 logicAnd : equality (('oraz') equality)*;
 equality : comparison (('równe'|'nierówne') comparison)*;
-comparison : addition (('większe niż'|'mniejsze niż') addition)*;
+comparison : addition (('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') addition)*;
 addition : multiplication (('dodać'|'odjąć') multiplication)*;
-multiplication : modulo (('razy') modulo)*;
-modulo : division (('moduł') division)*;
-division : primary (('przez') primary)*;
-primary : INT | STRING | BOOL | ID | LPAR expression RPAR;
+multiplication : primary (('razy'|'przez'|'moduł') primary)*;
+primary : INT | STRING | BOOL | variableReference | LPAR expression RPAR;
 
 type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
 ID : LETTER (LETTER | DIGIT)*;
 INT : ('minus')? DIGIT+;
 PINT : DIGIT+;
-STRING : 'początekcudzysłowu' ~('\n')* 'konieccudzysłowu';
+STRING : 'początekcudzysłowu' ~('\r' | '\n')* 'konieccudzysłowu';
 BOOL : 'prawda' | 'kłamstwo';
 
 LPAR : 'począteknawiasu';
