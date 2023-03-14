@@ -37,7 +37,7 @@ addition : multiplication (('dodać'|'odjąć') multiplication)*;
 multiplication : modulo (('razy') modulo)*;
 modulo : division (('moduł') division)*;
 division : primary (('przez') primary)*;
-primary : INT | STRING | BOOL | ID | 'począteknawiasu' expression 'koniecnawiasu';
+primary : INT | STRING | BOOL | ID | LPAR expression RPAR;
 
 type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
@@ -46,6 +46,9 @@ INT : ('minus')? DIGIT+;
 PINT : DIGIT+;
 STRING : 'początekcudzysłowu' ~('\n')* 'konieccudzysłowu'; // nie można zablokować "konieccudzysłowu" w stringu chyba
 BOOL : 'prawda' | 'kłamstwo';
+
+LPAR : 'począteknawiasu';
+RPAR : 'koniecnawiasu';
 
 NEWLINE: '\r'? '\n';
 WHITESPACE : [ \t]+ -> skip;
