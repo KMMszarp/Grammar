@@ -25,7 +25,7 @@ variableAssignment : ID 'to' expression;
 arrayAssignment : 'włóż' ID 'na' ID 'miejsce' expression;
 
 functionCall : 'wywołaj' ID argumentList;
-argumentList : ((variableDeclaration|ID) ('i' (variableDeclaration|ID))*)?;
+argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
 
 expression : negation; 
 negation : logicOr (('przemień'|'nie'|'zaneguj') logicOr)*;
