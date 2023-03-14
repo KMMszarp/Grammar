@@ -25,7 +25,7 @@ variableAssignment : ID 'to' expression;
 arrayAssignment : 'włóż' ID 'na' ID 'miejsce' expression;
 
 functionCall : 'wywołaj' ID argumentList;
-argumentList : (expression ('i' expression)*)?;
+argumentList : ((variableDeclaration|ID) ('i' (variableDeclaration|ID))*)?;
 
 expression : negation; 
 negation : logicOr (('przemień'|'nie'|'zaneguj') logicOr)*;
@@ -37,8 +37,7 @@ addition : multiplication (('dodać'|'odjąć') multiplication)*;
 multiplication : modulo (('razy') modulo)*;
 modulo : division (('moduł') division)*;
 division : primary (('przez') primary)*;
-// unaryMinus : ('minus')? primary;
-primary : INT | STRING | BOOL | ID | '(' expression ')';
+primary : INT | STRING | BOOL | ID | 'począteknawiasu' expression 'koniecnawiasu';
 
 type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
