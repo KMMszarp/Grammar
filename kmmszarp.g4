@@ -53,5 +53,5 @@ RPAR : 'koniecnawiasu';
 NEWLINE: '\r'? '\n';
 WHITESPACE : [ \t]+ -> skip;
 
-fragment LETTER: 'a'..'z' | 'A'..'Z' | 'ą' | 'ć' | 'ę' | 'ł' | 'ń' | 'ó' | 'ś' | 'ż' | 'ź'| 'Ą' | 'Ć' | 'Ę' | 'Ł' | 'Ó' | 'Ś' | 'Ż' | 'Ź' | '\u0143'; 
+fragment LETTER: 'a'..'z' | 'A'..'Z' | [\u0104-\u0107] | [\u0118-\u0119] | [\u0141-\u0144] | '\u00D3' | '\u00F3' | '\u015A' | '\u015B' | '\u0179' | '\u017A' | '\u017B' | '\u017C'; 
 fragment DIGIT: '0'..'9';
