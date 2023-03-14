@@ -4,18 +4,18 @@ program : (statement NEWLINE? | NEWLINE)*;
 
 statement : loopFor | loopWhile | conditional | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall;
 
-loopFor : 'pętla' 'zakres' variableDeclaration 'od' INT 'do' INT 'początekpętli' (statement NEWLINE)* 'koniecpętli';
-loopWhile : 'pętla' 'podczas' expression 'początekpętli' (statement NEWLINE)* 'koniecpętli';
+loopFor : 'pętla' 'zakres' variableDeclaration 'od' INT 'do' INT 'początek pętli' (statement NEWLINE)* 'koniec pętli';
+loopWhile : 'pętla' 'podczas' expression 'początek pętli' (statement NEWLINE)* 'koniec pętli';
 
-conditional : 'jeżeli' expression 'wtedy' 'początekjeżeli' (statement NEWLINE)* 'koniecjeżeli';
-ifelse: 'jeżeli' expression 'wtedy' 'początekjeżeli' (statement NEWLINE)* 'koniecjeżeli' (NEWLINE)* 'w przeciwnym wypadku' 'początekjeżeli' (statement NEWLINE)* 'koniecjeżeli';
+conditional : 'jeżeli' expression 'wtedy' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli';
+ifelse: 'jeżeli' expression 'wtedy' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli' (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli';
 
-functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początekczynności' (statement NEWLINE)* 'koniecczynności';
+functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' (statement NEWLINE)* 'koniec czynności';
 parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 
 variableDeclaration : 'zmienna' type ID 'to' expression;
-arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o' 'długości' PINT)?;
+arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
 arrayValue : expression;
 
 variableReference : ID | arrayAccess;
@@ -41,11 +41,11 @@ type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 ID : LETTER (LETTER | DIGIT)*;
 INT : ('minus')? DIGIT+;
 PINT : DIGIT+;
-STRING : 'początekcudzysłowu' ~('\r' | '\n')* 'konieccudzysłowu';
+STRING : 'początek cudzysłowu' ~('\r' | '\n')* 'koniec cudzysłowu';
 BOOL : 'prawda' | 'kłamstwo';
 
-LPAR : 'począteknawiasu';
-RPAR : 'koniecnawiasu';
+LPAR : 'początek nawiasu';
+RPAR : 'koniec nawiasu';
 
 NEWLINE: '\r'? '\n';
 WHITESPACE : [ \t]+ -> skip;
