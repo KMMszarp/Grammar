@@ -20,10 +20,10 @@ arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o dług
 arrayValue : expression;
 
 variableReference : ID | arrayAccess;
-arrayAccess : 'weź' ID 'element' ID;
+arrayAccess : 'weź' expression 'element' ID;
 
 variableAssignment : ID 'to' expression;
-arrayAssignment : 'włóż' expression 'na' expression 'miejsce' expression;
+arrayAssignment : 'włóż' expression 'na' expression 'miejsce' ID;
 
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
