@@ -13,6 +13,7 @@ ifelse: 'jeżeli' expression 'wtedy' 'początek jeżeli' (statement NEWLINE)* 'k
 functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' (statement NEWLINE)* 'koniec czynności';
 parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
+returnStatement : 'zwróć' expression;
 
 variableDeclaration : 'zmienna' type ID 'to' expression;
 arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
