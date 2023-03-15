@@ -5,12 +5,12 @@ program : (statement NEWLINE? | NEWLINE)*;
 statement : loopFor | loopWhile | conditional | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall;
 
 loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' (statement NEWLINE)* 'koniec pętli';
-loopWhile : 'pętla' 'podczas' expression 'początek pętli' (statement NEWLINE)* 'koniec pętli';
+loopWhile : 'pętla' 'podczas' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 
-conditional : 'jeżeli' expression 'wtedy' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli';
-ifelse: 'jeżeli' expression 'wtedy' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli' (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli' (statement NEWLINE)* 'koniec jeżeli';
+conditional : 'jeżeli' expression 'wtedy' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli';
+ifelse: 'jeżeli' expression 'wtedy' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli' (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli';
 
-functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' (statement NEWLINE)* 'koniec czynności';
+functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' NEWLINE* (statement NEWLINE)* returnStatement? NEWLINE*? 'koniec czynności';
 parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 returnStatement : 'zwróć' expression;
