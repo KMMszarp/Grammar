@@ -20,7 +20,7 @@ arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o dług
 arrayValue : expression;
 
 variableReference : ID | arrayAccess;
-arrayAccess : 'weź' expression 'element' ID;
+arrayAccess : 'weź' expression 'element' expression;
 
 variableAssignment : ID 'to' expression;
 arrayAssignment : 'włóż' expression 'na' expression 'miejsce' ID;
