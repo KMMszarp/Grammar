@@ -23,7 +23,7 @@ variableReference : ID | arrayAccess;
 arrayAccess : 'weź' expression 'element' expression;
 
 variableAssignment : ID 'to' expression;
-arrayAssignment : 'włóż' expression 'na' expression 'miejsce' ID;
+arrayAssignment : 'włóż' expression 'na' expression 'miejsce' expression;
 
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
