@@ -15,7 +15,7 @@ parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 returnStatement : 'zwróć' expression;
 
-variableDeclaration : 'zmienna' type ID 'to' expression;
+variableDeclaration : 'zmienna' type ID ('to' expression)?;
 arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
 arrayValue : expression;
 
