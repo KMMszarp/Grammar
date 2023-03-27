@@ -4,7 +4,7 @@ program : (statement NEWLINE? | NEWLINE)*;
 
 statement : loopFor | loopWhile | conditional | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall;
 
-loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' (statement NEWLINE)* 'koniec pętli';
+loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 loopWhile : 'pętla' 'podczas' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 
 conditional : 'jeżeli' expression 'wtedy' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli';
