@@ -39,6 +39,8 @@ primary : INT | STRING | BOOL | variableReference | LPAR expression RPAR;
 
 type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
+ULID : 'ściągnij' ID;
+
 ID : ULETTER (ULETTER | DIGIT)*;
 INT : ('minus')? DIGIT+;
 PINT : DIGIT+;
