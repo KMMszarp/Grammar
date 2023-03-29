@@ -15,7 +15,11 @@ parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 returnStatement : 'zwróć' expression;
 
-variableDeclaration : 'zmienna' type ID ('to' expression)?;
+variableDeclaration
+    :'zmienna' type ID # pureVariableDeclaration
+    |'zmienna' type ID 'to' expression # variableDeclarationWithAssignment
+    ;
+
 arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
 arrayValue : expression;
 
@@ -30,14 +34,23 @@ argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expre
 
 cast : 'rzuć' expression 'na' type;
 
-expression : logicOr;
-logicOr : logicAnd ('lub' logicAnd)*;
-logicAnd : equality (('oraz') equality)*;
-equality : comparison (('równe'|'nierówne') comparison)*;
-comparison : addition (('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') addition)*;
-addition : multiplication (('dodać'|'odjąć') multiplication)*;
-multiplication : primary (('razy'|'przez'|'moduł') primary)*;
-primary : INT | STRING | BOOL | variableReference | LPAR expression RPAR;
+expression
+    : expression or='lub' expression # LogicOr
+    | expression and='oraz' expression # LogicAnd
+    | expression eq=('równe'|'nierówne') expression # Equality
+    | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
+    | expression op=('dodać'|'odjąć') expression # Addition
+    | expression op=('razy'|'przez'|'moduł') expression # Multiplication
+    | primary # PrimaryExpression
+    ;
+
+primary
+    : INT # IntLiteral
+    | STRING # StringLiteral
+    | BOOL # BoolLiteral
+    | variableReference # VariableReferencePrimary
+    | LPAR expression RPAR # ParenthesizedExpression
+    ;
 
 type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
