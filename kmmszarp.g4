@@ -28,6 +28,8 @@ arrayAssignment : 'włóż' expression 'na' expression 'miejsce' expression;
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
 
+cast : 'rzuć' ID 'na' type;
+
 expression : logicOr;
 logicOr : logicAnd ('lub' logicAnd)*;
 logicAnd : equality (('oraz') equality)*;
