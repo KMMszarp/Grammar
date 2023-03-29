@@ -2,7 +2,7 @@ grammar kmmszarp;
 
 program : (statement NEWLINE? | NEWLINE)*;
 
-statement : loopFor | loopWhile | conditional | ifelse | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall;
+statement : loopFor | loopWhile | conditional | ifelse | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall | cast;
 
 loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 loopWhile : 'pętla' 'podczas' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
@@ -28,7 +28,7 @@ arrayAssignment : 'włóż' expression 'na' expression 'miejsce' expression;
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
 
-cast : 'rzuć' ID 'na' type;
+cast : 'rzuć' expression 'na' type;
 
 expression : logicOr;
 logicOr : logicAnd ('lub' logicAnd)*;
