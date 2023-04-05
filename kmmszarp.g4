@@ -5,8 +5,8 @@ program : (statement NEWLINE? | NEWLINE)*;
 statement
     : loopFor
     | loopWhile
-    | conditional
-    | ifelse
+    | conditionalStatement
+    | conditionalStatementElse
     | functionDefinition
     | variableDeclaration
     | arrayDeclaration
@@ -15,13 +15,37 @@ statement
     | functionCall
     | cast;
 
-loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
-loopWhile : 'pętla' 'podczas' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 
-conditional : 'jeżeli' expression 'wtedy' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli';
-ifelse: 'jeżeli' expression 'wtedy' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli' (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli' NEWLINE* (statement NEWLINE)* 'koniec jeżeli';
+loopFor :
+    'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' 
+    NEWLINE* (statement NEWLINE)*
+    'koniec pętli';
 
-functionDefinition : 'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' NEWLINE* (statement NEWLINE)* returnStatement? NEWLINE*? 'koniec czynności';
+loopWhile : 
+    'pętla' 'podczas' expression 'początek pętli' 
+    NEWLINE* (statement NEWLINE)*
+    'koniec pętli';
+
+
+conditionalStatement : 
+    'jeżeli' expression 'wtedy' 'początek jeżeli'
+    NEWLINE* (statement NEWLINE)*
+    'koniec jeżeli';
+
+conditionalStatementElse: 
+    'jeżeli' expression 'wtedy' 'początek jeżeli'
+    NEWLINE* (statement NEWLINE)*
+    'koniec jeżeli'
+    (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli'
+    NEWLINE* (statement NEWLINE)*
+    'koniec jeżeli';
+
+
+functionDefinition : 
+    'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' 
+    NEWLINE* (statement NEWLINE)* returnStatement? NEWLINE*?
+    'koniec czynności';
+
 parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' type ID;
 returnStatement : 'zwróć' expression;
