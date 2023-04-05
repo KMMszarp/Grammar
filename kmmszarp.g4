@@ -2,7 +2,18 @@ grammar kmmszarp;
 
 program : (statement NEWLINE? | NEWLINE)*;
 
-statement : loopFor | loopWhile | conditional | ifelse | functionDefinition | variableDeclaration | arrayDeclaration | variableAssignment | arrayAssignment | functionCall | cast;
+statement
+    : loopFor
+    | loopWhile
+    | conditional
+    | ifelse
+    | functionDefinition
+    | variableDeclaration
+    | arrayDeclaration
+    | variableAssignment
+    | arrayAssignment
+    | functionCall
+    | cast;
 
 loopFor : 'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
 loopWhile : 'pętla' 'podczas' expression 'początek pętli' NEWLINE* (statement NEWLINE)* 'koniec pętli';
@@ -35,12 +46,12 @@ argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expre
 cast : 'rzuć' expression 'na' type;
 
 expression
-    : expression or='lub' expression # LogicOr
-    | expression and='oraz' expression # LogicAnd
-    | expression eq=('równe'|'nierówne') expression # Equality
-    | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
+    : expression op=('razy'|'przez'|'moduł') expression # Multiplication
     | expression op=('dodać'|'odjąć') expression # Addition
-    | expression op=('razy'|'przez'|'moduł') expression # Multiplication
+    | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
+    | expression eq=('równe'|'nierówne') expression # Equality
+    | expression and='oraz' expression # LogicAnd
+    | expression or='lub' expression # LogicOr
     | primary # PrimaryExpression
     ;
 
@@ -68,6 +79,13 @@ RPAR : 'koniec nawiasu';
 WHITESPACE : [ \t]+ -> skip;
 NEWLINE: '\r'? '\n';
 
-fragment ULETTER: 'A'..'Z' | '\u0104' | '\u0106' | '\u0118' | '\u0141' | '\u0143' | '\u00D3' | '\u015A' | '\u0179' | '\u017B';
-fragment LETTER: 'a'..'z' | 'A'..'Z' | [\u0104-\u0107] | [\u0118-\u0119] | [\u0141-\u0144] | '\u00D3' | '\u00F3' | '\u015A' | '\u015B' | '\u0179' | '\u017A' | '\u017B' | '\u017C'; 
+fragment ULETTER
+    : 'A'..'Z'
+    | '\u0104' | '\u0106' | '\u0118' | '\u0141' | '\u0143' | '\u00D3' | '\u015A' | '\u0179' | '\u017B';
+
+fragment LETTER
+    : 'a'..'z' | 'A'..'Z'
+    | [\u0104-\u0107] | [\u0118-\u0119] | [\u0141-\u0144]
+    | '\u00D3' | '\u00F3' | '\u015A' | '\u015B' | '\u0179' | '\u017A' | '\u017B' | '\u017C';
+
 fragment DIGIT: '0'..'9';
