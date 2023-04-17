@@ -42,20 +42,20 @@ conditionalStatementElse:
 
 
 functionDefinition : 
-    'czynność' ID ('parametry' parameterList)? 'zwraca' type 'początek czynności' 
+    'czynność' ID ('parametry' parameterList)? 'zwraca' dtype 'początek czynności'
     NEWLINE* (statement NEWLINE)* returnStatement? NEWLINE*?
     'koniec czynności';
 
 parameterList : (parameter ('i' parameter)*)?;
-parameter : 'zmienna' type ID;
+parameter : 'zmienna' dtype ID;
 returnStatement : 'zwróć' expression;
 
 variableDeclaration
-    :'zmienna' type ID # pureVariableDeclaration
-    |'zmienna' type ID 'to' expression # variableDeclarationWithAssignment
+    :'zmienna' dtype ID # pureVariableDeclaration
+    |'zmienna' dtype ID 'to' expression # variableDeclarationWithAssignment
     ;
 
-arrayDeclaration : 'tablica' type ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
+arrayDeclaration : 'tablica' dtype ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
 arrayValue : expression;
 
 variableReference : ID | arrayAccess;
@@ -67,7 +67,7 @@ arrayAssignment : 'włóż' expression 'na' expression 'miejsce' expression;
 functionCall : 'wywołaj' ID argumentList;
 argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expression))*)?;
 
-cast : 'rzuć' expression 'na' type;
+cast : 'rzuć' expression 'na' dtype;
 
 expression
     : expression op=('razy'|'przez'|'moduł') expression # Multiplication
@@ -87,7 +87,7 @@ primary
     | LPAR expression RPAR # ParenthesizedExpression
     ;
 
-type : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
+dtype : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 
 EXID : 'odkryj' ID;
 
