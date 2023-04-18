@@ -80,6 +80,7 @@ expression
     | expression op=('razy'|'przez'|'moduł') expression # Multiplication
     | expression op=('dodać'|'odjąć') expression # Addition
     | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
+    | ('przemień'|'zaneguj'|'nie') expression  # Negation
     | expression eq=('równe'|'nierówne') expression # Equality
     | expression and='oraz' expression # LogicAnd
     | expression or='lub' expression # LogicOr
