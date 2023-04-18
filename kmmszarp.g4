@@ -17,7 +17,7 @@ statement
 
 
 loopFor :
-    'pętla' 'zakres' variableDeclaration 'od' expression 'do' expression 'początek pętli' 
+    'pętla' 'zakres' (pureVariableDeclaration | ID) 'od' expression 'do' expression 'początek pętli'
     NEWLINE* (statement NEWLINE)*
     'koniec pętli';
 
@@ -48,9 +48,17 @@ parameterList : (parameter ('i' parameter)*)?;
 parameter : 'zmienna' dtype ID;
 returnStatement : 'zwróć' expression;
 
+pureVariableDeclaration
+    : 'zmienna' dtype ID
+    ;
+
+variableDeclarationWithAssignment
+    : 'zmienna' dtype ID 'to' expression
+    ;
+
 variableDeclaration
-    :'zmienna' dtype ID # pureVariableDeclaration
-    |'zmienna' dtype ID 'to' expression # variableDeclarationWithAssignment
+    : pureVariableDeclaration
+    | variableDeclarationWithAssignment
     ;
 
 arrayDeclaration : 'tablica' dtype ID 'to' arrayValue ('i' arrayValue)* ('o długości' PINT)?;
