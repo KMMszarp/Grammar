@@ -33,9 +33,7 @@ conditionalStatement :
     'koniec jeżeli';
 
 conditionalStatementElse: 
-    'jeżeli' expression 'wtedy' 'początek jeżeli'
-    NEWLINE* (statement NEWLINE)*
-    'koniec jeżeli'
+    conditionalStatement
     (NEWLINE)* 'w przeciwnym wypadku' 'początek jeżeli'
     NEWLINE* (statement NEWLINE)*
     'koniec jeżeli';
