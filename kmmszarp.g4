@@ -18,12 +18,12 @@ statement
 
 loopFor :
     'pętla' 'zakres' (pureVariableDeclaration | ID) 'od' expression 'do' expression 'początek pętli'
-    NEWLINE* (statement NEWLINE)*
+    NEWLINE* ((statement NEWLINE) | NEWLINE)*
     'koniec pętli';
 
 loopWhile : 
     'pętla' 'podczas' expression 'początek pętli' 
-    NEWLINE* (statement NEWLINE)*
+    NEWLINE* ((statement NEWLINE) | NEWLINE)*
     'koniec pętli';
 
 
