@@ -68,7 +68,8 @@ argumentList : ((variableDeclaration|expression) ('i' (variableDeclaration|expre
 cast : 'rzuć' expression 'na' dtype;
 
 expression
-    : expression op=('razy'|'przez'|'moduł') expression # Multiplication
+    : LPAR expression RPAR # ParenthesizedExpression
+    | expression op=('razy'|'przez'|'moduł') expression # Multiplication
     | expression op=('dodać'|'odjąć') expression # Addition
     | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
     | expression eq=('równe'|'nierówne') expression # Equality
@@ -82,7 +83,6 @@ primary
     | STRING # StringLiteral
     | BOOL # BoolLiteral
     | variableReference # VariableReferencePrimary
-    | LPAR expression RPAR # ParenthesizedExpression
     ;
 
 dtype : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
