@@ -77,6 +77,7 @@ cast : 'rzuć' expression 'na' dtype;
 
 expression
     : LPAR expression RPAR # ParenthesizedExpression
+    | 'minus' expression # UnaryMinus
     | expression op=('razy'|'przez'|'moduł') expression # Multiplication
     | expression op=('dodać'|'odjąć') expression # Addition
     | expression op=('większe niż'|'mniejsze niż'|'większe lub równe'|'mniejsze lub równe') expression # Comparison
@@ -100,7 +101,8 @@ dtype : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
 EXID : 'odkryj' ID;
 
 ID : ULETTER (ULETTER | DIGIT)*;
-INT : ('minus')? DIGIT+;
+INT : DIGIT+;
+
 PINT : DIGIT+;
 STRING : 'początek cudzysłowu' ~('\r' | '\n')* 'koniec cudzysłowu';
 BOOL : 'prawda' | 'kłamstwo';
