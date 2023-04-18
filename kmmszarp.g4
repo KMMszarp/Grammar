@@ -13,7 +13,7 @@ statement
     | variableAssignment
     | arrayAssignment
     | functionCall
-    | cast;
+    ;
 
 
 loopFor :
@@ -85,6 +85,7 @@ expression
     | expression and='oraz' expression # LogicAnd
     | expression or='lub' expression # LogicOr
     | primary # PrimaryExpression
+    | cast # CastExpression
     ;
 
 primary
