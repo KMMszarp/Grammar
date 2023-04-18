@@ -110,6 +110,8 @@ RPAR : 'koniec nawiasu';
 WHITESPACE : [ \t]+ -> skip;
 NEWLINE: '\r'? '\n';
 
+COMMENT: 'opis' ~[\r\n]* -> skip;
+
 fragment ULETTER
     : 'A'..'Z'
     | '\u0104' | '\u0106' | '\u0118' | '\u0141' | '\u0143' | '\u00D3' | '\u015A' | '\u0179' | '\u017B';
