@@ -77,6 +77,7 @@ cast : 'rzuć' expression 'na' dtype;
 
 expression
     : LPAR expression RPAR # ParenthesizedExpression
+    | cast # CastExpression
     | 'minus' expression # UnaryMinus
     | expression op=('razy'|'przez'|'moduł') expression # Multiplication
     | expression op=('dodać'|'odjąć') expression # Addition
@@ -86,7 +87,6 @@ expression
     | expression and='oraz' expression # LogicAnd
     | expression or='lub' expression # LogicOr
     | primary # PrimaryExpression
-    | cast # CastExpression
     ;
 
 primary
