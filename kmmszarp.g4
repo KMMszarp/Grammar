@@ -94,6 +94,7 @@ primary
     | STRING # StringLiteral
     | BOOL # BoolLiteral
     | variableReference # VariableReferencePrimary
+    | functionCall # FunctionCallPrimary
     ;
 
 dtype : 'liczba' | 'napis' | 'prawdziwość' | 'nicość';
